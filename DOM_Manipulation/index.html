@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Manipulation</title>
+    <style>
+      .listColor {
+        color: red;
+      }
+
+      .displayFlex {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+      }
+
+      #inputText {
+        padding: 0.6rem 1.9rem;
+        font-size: 1.5rem;
+        border-radius: 3rem;
+        border-width: 0.3rem;
+      }
+
+      #para {
+        font-size: 1.6rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="mainHeading">Hello JavaScript. I'm doing this task</h1>
+    <div
+      class="myBox"
+      style="background-color: yellow; width: 12rem; height: 12rem"
+    ></div>
+
+    <ul id="mainList">
+      <li>JavaScript</li>
+      <li>TypeScript</li>
+    </ul>
+
+    <h1 id="unwantedHeading">Hi everyone, I won't let you study</h1>
+
+    <ol id="secondList" class="listColor">
+      Things required for learning web development
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+      <li>Modeling</li>
+    </ol>
+
+    <img
+      src="https://www.valuecoders.com/blog/wp-content/uploads/2016/08/react.png"
+      alt="reactjsImg"
+      width="100%"
+      id="newImg"
+    />
+
+    <form
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <p>
+        <em id="para">
+          Im a dummy text that will be changed momentarilty due to a button
+          click 😄
+        </em>
+      </p>
+      <h3>
+        Enter your text here that you want to show on Click of this button
+      </h3>
+      <input type="text" id="inputText" placeholder="Enter anything here..." />
+      <h2>
+        Click this button to change the text of this above paragraph to 'Hello
+        everyone how are you all'
+      </h2>
+      <button id="btn">Click me</button>
+    </form>
+
+    <script>
+      //1) select an HTML element by its ID and change its text content
+      const mainHeading = document.getElementById('mainHeading');
+      mainHeading.innerText = 'Hello JavaScript, I"ve done this task';
+
+      //  2) select an HTML element by its class and change its backgroud color
+      const myBox = document.querySelector('.myBox');
+      myBox.style.backgroundColor = 'red';
+
+      //  3) create a new div element with some text content and append it to the body
+      //   i) let's first create a new div using createElement
+      const newDiv = document.createElement('div');
+
+      // ii) now let's set the text content inside this newly created div, we can use either .textContent or .innerText
+      newDiv.innerText = 'I am newly created div using vanila JavaScript 😊';
+
+      // iii) finally, let's append(add) this newly created div to the body
+      document.body.appendChild(newDiv);
+
+      //   4) create a new li element and add it to an existing ul list
+      // chalo bhai ho jao shur
+
+      const mainList = document.getElementById('mainList');
+      const newListItem = document.createElement('li');
+      newListItem.innerText = 'React.js';
+      mainList.appendChild(newListItem);
+
+      //   5) select an HTML element and remove it from the dom
+      const unwantedHeading = document.getElementById('unwantedHeading');
+      document.body.removeChild(unwantedHeading);
+
+      //   6) remove the last child of a specific HTML element
+      const secondList = document.getElementById('secondList');
+      const lastChildOfSecondList = secondList.lastElementChild;
+      secondList.removeChild(lastChildOfSecondList);
+
+      //   7) select an html element and change one of its attributes (eg src of an image)
+      const newImg = document.getElementById('newImg');
+      //one simple way to do this is like this
+      //   newImg.src =
+      //     'https://www.codecademy.com/resources/blog/wp-content/uploads/2022/12/what-is-javascript-used-for.png';
+
+      //another way is by using setAttribute() method
+      newImg.setAttribute(
+        'src',
+        'https://www.codecademy.com/resources/blog/wp-content/uploads/2022/12/what-is-javascript-used-for.png'
+      );
+
+      //   8) add and remove a CSS class to/from an HTML element
+      secondList.classList.add('displayFlex'); //adding a new class
+      secondList.classList.remove('listColor'); //removing the old class
+
+      //   9) add a click event to a button that changes the text content of a paragraph
+      const btn = document.getElementById('btn');
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const para = document.getElementById('para');
+        const inputText = document.getElementById('inputText').value;
+        para.innerText = inputText;
+      });
+
+      //   10) add a mouseover event listener to an element that changes its border color
+      inputText.addEventListener('mouseover', () => {
+        inputText.style.borderColor = 'red';
+      });
+    </script>
+  </body>
+</html>
