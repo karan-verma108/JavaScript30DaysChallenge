@@ -36,6 +36,14 @@
         font-size: 1.2rem;
         border-radius: 2rem;
       }
+
+      .showImage {
+        visibility: visible;
+      }
+
+      .hideImage {
+        visibility: hidden;
+      }
     </style>
   </head>
   <body>
@@ -48,6 +56,7 @@
       src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
       alt="javascriptImage"
       width="150"
+      class="showImage"
     />
     <h3>Double click the button to toggle the visiblity of the image</h3>
     <button id="toggleImgBtn">Toggle visibility</button>
@@ -129,16 +138,41 @@
       });
 
       //   2) add a double click listener on an image that toggles its visibility
-      const toggleImgBtn = document.getElementById('toggleImgBtn');
-      toggleImgBtn.addEventListener('dblclick', () => {
-        const jsImage = document.getElementById('jsImage');
-        if (
-          (jsImage.style.visibility === 'visible') |
-          (jsImage.style.visibility === '')
-        ) {
-          jsImage.style.visibility = 'hidden';
+      //   const toggleImgBtn = document.getElementById('toggleImgBtn');
+      //   toggleImgBtn.addEventListener('dblclick', () => {
+      //     const jsImage = document.getElementById('jsImage');
+      //     if (
+      //       (jsImage.style.visibility === 'visible') |
+      //       (jsImage.style.visibility === '')
+      //     ) {
+      //       jsImage.style.visibility = 'hidden';
+      //     } else {
+      //       jsImage.style.visibility = 'visible';
+      //     }
+      //   });
+
+      // const toggleImgBtn = document.getElementById('toggleImgBtn');
+
+      //applying first double onclick on the image itself to hide it
+      const jsImage = document.getElementById('jsImage');
+      jsImage.addEventListener('dblclick', (e) => {
+        if (jsImage.classList.contains('showImage')) {
+          jsImage.classList.remove('showImage');
+          jsImage.classList.add('hideImage');
         } else {
-          jsImage.style.visibility = 'visible';
+          jsImage.classList.remove('hideImage');
+          jsImage.classList.add('showImage');
+        }
+      });
+
+      //applying the second double onclick on documenet to make it visible, creating a toggle effect
+      document.addEventListener('dblclick', function (e) {
+        if (
+          e.target.children[3] &&
+          e.target.children[3].className === 'hideImage'
+        ) {
+          jsImage.classList.remove('hideImage');
+          jsImage.classList.add('showImage');
         }
       });
 
