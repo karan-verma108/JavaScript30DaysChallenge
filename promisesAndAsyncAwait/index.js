@@ -130,26 +130,47 @@ Promise.all([promiseOne, promiseTwo, promiseThree])
 
 // 9) use Promise.race to log the value of the first promise that resolves among multiple promises
 
-const firstPromise = new Promise((resolve, reject) => {
+let firstPromise = new Promise((resolve, reject) => {
   setTimeout(resolve, 1000, 'hurray! im first');
 });
 
-const secondPromise = new Promise((resolve, reject) => {
+let secondPromise = new Promise((resolve, reject) => {
   setTimeout(resolve, 950, 'well not really im first');
 });
 
-const thridPromise = new Promise((resolve, reject) => {
+let thirdPromise = new Promise((resolve, reject) => {
   setTimeout(resolve, 120, 'you guys really think you can beat me??');
 });
 
-const fouthPromise = new Promise((resolve, reject) => {
+let fouthPromise = new Promise((resolve, reject) => {
   setTimeout(resolve, 8100, 'wait for me yr');
 });
 
-Promise.race([firstPromise, secondPromise, thridPromise, fouthPromise])
+Promise.all([firstPromise, secondPromise, thirdPromise, fouthPromise])
   .then((value) => {
     console.log('value', value);
   })
   .catch((err) => {
     console.log('error : ', err);
   });
+
+//playing with feature 5
+firstPromise = new Promise((resolve, reject) => {
+  setTimeout(resolve, 600, 'hurray im more faster now');
+});
+
+secondPromise = new Promise((resolve, reject) => {
+  setTimeout(resolve, 1000, 'well im not that fast anymore');
+});
+
+thirdPromise = new Promise((resolve, reject) => {
+  setTimeout(resolve, 1000, 'man oh man i got so late');
+});
+
+fouthPromise = new Promise((resolve, reject) => {
+  setTimeout(resolve, 4000, 'still no relief for me');
+});
+
+Promise.race([firstPromise, secondPromise, thirdPromise, fouthPromise])
+  .then((value) => console.log(value))
+  .catch((err) => console.log(err));
