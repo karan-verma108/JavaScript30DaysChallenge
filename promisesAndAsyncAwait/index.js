@@ -30,7 +30,7 @@ promise2
     console.log('Error : Promise is rejected');
   });*/
 
-/*   3) create a sequence of promises that simulate fetching data from a server. Chain the promises to log messages in a specific order
+// /   3) create a sequence of promises that simulate fetching data from a server. Chain the promises to log messages in a specific order
 
 const promise3 = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -40,11 +40,14 @@ const promise3 = new Promise((resolve, reject) => {
 
 promise3
   .then((data) => {
-    console.log('The name is', data.name);
+    console.log('data recieved is', data);
+    return new Promise((resolve, reject) => {
+      setTimeout(resolve, 2000, data.profession);
+    }).then((furtherData) => console.log('further Data is ', furtherData));
   })
   .catch(() => {
     console.log('Server Side Error');
-  }); */
+  });
 
 /*   4) write an async function that waits for a promise to resolve and then logs the resolved value
 
