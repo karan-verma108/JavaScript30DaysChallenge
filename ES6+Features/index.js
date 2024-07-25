@@ -11,7 +11,8 @@ console.log(
 
 // 2) create a multi-line string using template literals and log it to the console
 
-const myLongStr = `today is my 8th day of practising javascript. I'm doing these challenges given by Chai or code (Hitesh sir)
+const myLongStr = `today is my 8t
+h day of practising javascript. I'm doing these challenges given by Chai or code (Hitesh sir)
 currently writing this multi line string using template literals to see what is shows in console so
 now let's see`;
 
