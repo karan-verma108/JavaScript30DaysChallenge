@@ -4,12 +4,7 @@ import { addition } from './addModule.js';
 import { personObj } from './objModule.js';
 import { multiply, findLeapYear, isPalindrome } from './multipleFn.js';
 import fetchAnyApi from './firstDefaultFn.js';
-import {
-  year,
-  mood,
-  createGithubProfile,
-  showTime,
-} from './multipleConstNFun.js';
+import * as mainObj from './multipleConstNFun.js';
 
 /* 1) create a module that exports a function to add two numbers. Import and use this module in another script 
 const sumOfTwoNumbers = addition(5, 6);
@@ -54,19 +49,8 @@ fetchAnyApi('https://jsonplaceholder.typicode.com/users')
 
 //   5) create a module that exports multiple constants and functions. Import the entire module as an object in another script and use its properties
 
-const key1 = year;
-const key2 = mood;
-const key3 = createGithubProfile;
-const key4 = showTime;
-
-const newObj = {
-  key1,
-  key2,
-  key3,
-  key4,
-};
-
-// console.log('newobj', newObj.key4());
+// it gets imported in the form of an object
+console.log('mainobj', mainObj);
 
 // 6) install a third party module lodash using npm. Import and use a function from this module in a script
 
@@ -87,6 +71,6 @@ const letsFetchApiAgain = async () => {
   }
 };
 
-letsFetchApiAgain();
+// letsFetchApiAgain();
 
 // 8) use a module bundler like webpack or parcel to bundle multiple javascript files into a single file. Write a script to demonstate the bundling process
